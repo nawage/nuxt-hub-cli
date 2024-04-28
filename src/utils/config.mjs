@@ -4,6 +4,7 @@ import { homedir } from 'os'
 import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'pathe'
 import { config } from 'dotenv'
+import ci from 'ci-info'
 
 // Load project .env
 config()
@@ -23,7 +24,14 @@ export function writeUserConfig (config) {
 }
 
 export function isHeadless() {
-  return isDocker() || Boolean(process.env.SSH_CLIENT || process.env.SSH_TTY)
+  console.log("ci", ci.isCI)
+  console.log("process.stdin.isHeadless", process.stdin.isHeadless)
+  console.log("process.stdin.isRaw", process.stdin.isRaw)
+  console.log("process.stdin.isTTY", process.stdin.isTTY)
+  console.log("process.stdin.isDocker", process.stdin.isDocker)
+  console.log("isDocker()", isDocker())
+  // return isDocker() || Boolean(process.env.SSH_CLIENT || process.env.SSH_TTY)
+  return (ci.isCI || !process.stdin.isTTY)
 }
 
 export function projectPath() {
