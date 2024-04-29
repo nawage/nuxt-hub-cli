@@ -24,7 +24,7 @@ export function writeUserConfig (config) {
 }
 
 export function isHeadless() {
-  return (!process.stdin.isTTY || ci.isCI || 'CI' in process.env || (!process.stdin.isTTY && isDocker()))
+  return (!process.stdout.isTTY || ci.isCI || 'CI' in process.env || (!process.stdout.isTTY && isDocker()))
 }
 
 export function projectPath() {
