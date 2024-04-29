@@ -23,7 +23,7 @@ export function writeUserConfig (config) {
 }
 
 export function isHeadless() {
-  return (!process.stdout.isTTY || ci.isCI || 'CI' in process.env)
+  return (!process.stdout.isTTY || ci.isCI)
 }
 
 export function projectPath() {
