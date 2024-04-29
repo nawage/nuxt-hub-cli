@@ -24,14 +24,7 @@ export function writeUserConfig (config) {
 }
 
 export function isHeadless() {
-  console.log("ci", ci.isCI)
-  console.log("process.stdin.isHeadless", process.stdin.isHeadless)
-  console.log("process.stdin.isRaw", process.stdin.isRaw)
-  console.log("process.stdin.isTTY", process.stdin.isTTY)
-  console.log("process.stdin.isDocker", process.stdin.isDocker)
-  console.log("isDocker()", isDocker())
-  // return isDocker() || Boolean(process.env.SSH_CLIENT || process.env.SSH_TTY)
-  return (ci.isCI || !process.stdin.isTTY)
+  return (!process.stdin.isTTY || ci.isCI || process.env.TERM === 'dumb' || 'CI' in process.env)
 }
 
 export function projectPath() {
