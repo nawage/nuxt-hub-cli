@@ -1,5 +1,5 @@
 {
-  "name": "nuxthub",
+  "name": "@nawage/nuxthub",
   "version": "0.5.10",
   "license": "Apache-2.0",
   "description": "Interface with the NuxtHub platform from the command line.",
