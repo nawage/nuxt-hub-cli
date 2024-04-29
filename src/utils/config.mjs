@@ -1,10 +1,9 @@
-import isDocker from 'is-docker'
+import ci from 'ci-info'
 import { updateUser, readUser, writeUser } from 'rc9'
 import { homedir } from 'os'
 import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'pathe'
 import { config } from 'dotenv'
-import ci from 'ci-info'
 
 // Load project .env
 config()
@@ -24,7 +23,7 @@ export function writeUserConfig (config) {
 }
 
 export function isHeadless() {
-  return (!process.stdout.isTTY || ci.isCI || 'CI' in process.env || (!process.stdout.isTTY && isDocker()))
+  return (!process.stdout.isTTY || ci.isCI || 'CI' in process.env)
 }
 
 export function projectPath() {
